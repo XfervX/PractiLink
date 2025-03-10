@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practilink</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header { background: #007BFF; color: white; padding: 15px; text-align: center; font-size: 24px; }
+        nav { background: #0056b3; padding: 10px; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 10px; font-size: 18px; }
+        .container { padding: 20px; }
+        .search-box, .filter-box, .results, .chatbot { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .search-box { background: #f1f1f1; }
+        .filter-box { background: #e9f5ff; }
+        .results { background: #fff3cd; }
+        .chatbot { background: #e8e8e8; }
+        .result-card { border: 1px solid #ccc; padding: 10px; margin: 10px 0; background: white; }
+    </style>
+</head>
+<body>
+
+<header>Practilink - Encuentra tu lugar ideal</header>
+
+<nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#busqueda">Búsqueda</a>
+    <a href="#filtrar">Filtrar</a>
+    <a href="#retroceder">Retroceder</a>
+    <a href="#asistente">Asistente IA</a>
+</nav>
+
+<div class="container">
+
+    <!-- Sección de Búsqueda -->
+    <div id="busqueda" class="search-box">
+        <h2>Búsqueda</h2>
+        <input type="text" id="search" placeholder="Ingresa ciudad o colonia">
+        <button onclick="buscar()">Buscar</button>
+    </div>
+
+    <!-- Sección de Filtros -->
+    <div id="filtrar" class="filter-box">
+        <h2>Filtrar</h2>
+        <label>Rango de precio:</label>
+        <input type="number" id="minPrice" placeholder="Mínimo">
+        <input type="number" id="maxPrice" placeholder="Máximo">
+        <button onclick="filtrar()">Aplicar Filtros</button>
+    </div>
+
+    <!-- Sección de Resultados -->
+    <div id="resultados" class="results">
+        <h2>Resultados</h2>
+        <div id="listado"></div>
+    </div>
+
+    <!-- Sección de Asistente IA -->
+    <div id="asistente" class="chatbot">
+        <h2>Asistente IA</h2>
+        <p>Pregunta lo que necesites:</p>
+        <input type="text" id="chatInput" placeholder="Escribe tu pregunta...">
+        <button onclick="responderIA()">Enviar</button>
+        <p id="chatResponse"></p>
+    </div>
+
+</div>
+
+<script>
+    function buscar() {
+        let searchTerm = document.getElementById("search").value;
+        if (searchTerm) {
+            document.getElementById("listado").innerHTML = `<div class='result-card'>Resultados para "${searchTerm}"</div>`;
+        } else {
+            alert("Ingresa una ubicación para buscar.");
+        }
+    }
+
+    function filtrar() {
+        let min = document.getElementById("minPrice").value;
+        let max = document.getElementById("maxPrice").value;
+        if (min && max) {
+            document.getElementById("listado").innerHTML += `<div class='result-card'>Filtrando por precio entre ${min} y ${max}</div>`;
+        } else {
+            alert("Completa los valores de precio.");
+        }
+    }
+
+    function responderIA() {
+        let question = document.getElementById("chatInput").value.toLowerCase();
+        let response = "No entendí la pregunta, intenta otra vez.";
+        if (question.includes("precio")) {
+            response = "Los precios dependen de la ubicación. ¿Deseas filtrar por precio?";
+        } else if (question.includes("ubicación")) {
+            response = "Podemos buscar en la colonia o ciudad que prefieras.";
+        }
+        document.getElementById("chatResponse").innerText = response;
+    }
+</script>
+
+</body>
+</html>
