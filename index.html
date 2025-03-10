@@ -65,37 +65,7 @@
 
 </div>
 
-<script>
-    function buscar() {
-        let searchTerm = document.getElementById("search").value;
-        if (searchTerm) {
-            document.getElementById("listado").innerHTML = `<div class='result-card'>Resultados para "${searchTerm}"</div>`;
-        } else {
-            alert("Ingresa una ubicación para buscar.");
-        }
-    }
-
-    function filtrar() {
-        let min = document.getElementById("minPrice").value;
-        let max = document.getElementById("maxPrice").value;
-        if (min && max) {
-            document.getElementById("listado").innerHTML += `<div class='result-card'>Filtrando por precio entre ${min} y ${max}</div>`;
-        } else {
-            alert("Completa los valores de precio.");
-        }
-    }
-
-    function responderIA() {
-        let question = document.getElementById("chatInput").value.toLowerCase();
-        let response = "No entendí la pregunta, intenta otra vez.";
-        if (question.includes("precio")) {
-            response = "Los precios dependen de la ubicación. ¿Deseas filtrar por precio?";
-        } else if (question.includes("ubicación")) {
-            response = "Podemos buscar en la colonia o ciudad que prefieras.";
-        }
-        document.getElementById("chatResponse").innerText = response;
-    }
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
